@@ -2,6 +2,8 @@
 using System;
 using System.Numerics;
 
+using Raylib_cs;
+
 // The namespace your code is in.
 namespace MohawkGame2D
 {
@@ -10,23 +12,29 @@ namespace MohawkGame2D
     /// </summary>
     public class Game
     {
-        // Place your variables here:
+        private Texture2D backgroundimage;
 
-
-        /// <summary>
-        ///     Setup runs once before the game loop begins.
-        /// </summary>
         public void Setup()
         {
+            Window.SetTitle("Chilly Beans");
+            Window.SetSize(400, 400);
+            Window.TargetFPS = 150;    // Set the target FPS to 150 to combat flickering of image on screen
 
+            // Load background image
+            Image img = Raylib.LoadImage("C:\\Users\\Blair\\OneDrive\\Desktop\\Visual Studio-Blair's Projects\\Background Images\\image001.png");
+            backgroundimage = Raylib.LoadTextureFromImage(img);
+            Raylib.UnloadImage(img);
         }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
         public void Update()
         {
+            Raylib.BeginDrawing();
+            Window.ClearBackground(Color.Black);
 
+            // Draw the image to background
+            Raylib.DrawTexture(backgroundimage, 0, 0, Raylib_cs.Color.White);
+
+            Raylib.EndDrawing();
         }
     }
 
